@@ -37,7 +37,7 @@ templates:
       abis:
         - name: Metaversepad
           file: ./abis/Metaversepad.json
-        - name: PoolCreation
+        - name: PoolFactory
           file: ./abis/PoolFactory.json
       eventHandlers:
         - event: FundPool(indexed uint256,indexed address,uint256)
