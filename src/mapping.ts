@@ -71,12 +71,6 @@ export function handleFundPool(eventPoolCreation: PoolCreation, eventPoolInfo: F
     // entity.count = BigInt.fromI32(0)
   }
 
-  if (!poolEntity) {
-    poolEntity = new MetaversepadPool(eventPoolCreation.params.poolAddress.toHexString())
-
-    // Entity fields can be set using simple assignments
-    // entity.count = BigInt.fromI32(0)
-  }
   // BigInt and BigDecimal math are supported
   // entity.count = entity.count + BigInt.fromI32(1)
 
