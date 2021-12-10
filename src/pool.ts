@@ -1,27 +1,17 @@
-import { BigInt } from "@graphprotocol/graph-ts"
 import {
-  PoolFactory,
-  PoolCreation
-} from "../generated/PoolFactory/PoolFactory"
-import { PoolCreationEntity, MetaversepadPool } from "../generated/schema"
+  FundPool
+} from "../generated/templates/MetaversepadTemplate/Metaversepad"
+import { MetaversepadPool } from "../generated/schema"
 
-export function handlePoolCreation(event: PoolCreation): void {
+export function handleFundPool(event: FundPool): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
-  let entity = PoolCreationEntity.load(event.transaction.hash.toHex())
-  let poolEntity = MetaversepadPool.load(event.params.poolAddress.toHexString())
+  let entity = MetaversepadPool.load(event.address.toHexString())
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (!entity) {
-    entity = new PoolCreationEntity(event.transaction.hash.toHex())
-
-    // Entity fields can be set using simple assignments
-    // entity.count = BigInt.fromI32(0)
-  }
-
-  if (!poolEntity) {
-    poolEntity = new MetaversepadPool(event.params.poolAddress.toHexString())
+    entity = new MetaversepadPool(event.address.toHexString())
 
     // Entity fields can be set using simple assignments
     // entity.count = BigInt.fromI32(0)
@@ -32,8 +22,8 @@ export function handlePoolCreation(event: PoolCreation): void {
   // Entity fields can be set based on event parameters
   // entity.previousOwner = event.params.previousOwner
   // entity.newOwner = event.params.newOwner
-  entity.timestamp = event.params.timestamp
-  entity.poolAddress = event.params.poolAddress
+  entity.address = event.params.initiator
+  entity.balance = event.params.value
 
   // Entities can be written to the store with `.save()`
   entity.save()

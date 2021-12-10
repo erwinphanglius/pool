@@ -3,3 +3,9 @@ type PoolCreationEntity @entity {
   timestamp: BigInt! # address
   poolAddress: Bytes! # address
 }
+
+type MetaversepadPool @entity {
+  id: ID!
+  address: Bytes! # address
+  balance: BigInt!
+}

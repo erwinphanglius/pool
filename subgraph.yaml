@@ -42,5 +42,5 @@ templates:
       eventHandlers:
         - event: FundPool(indexed uint256,indexed address,uint256)
           handler: handleFundPool
-      file: ./src/mapping.ts
+      file: ./src/pool.ts
 
